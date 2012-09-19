@@ -63,7 +63,7 @@ struct ip_cpu_info {
 static DEFINE_PER_CPU(struct ip_cpu_info, ip_info);
 
 /* HotPlug Driver controls */
-static atomic_t hima_hotplug_active = ATOMIC_INIT(1);
+static atomic_t hima_hotplug_active = ATOMIC_INIT(0);
 static unsigned int min_cpus_online = DEFAULT_MIN_CPUS_ONLINE;
 static unsigned int max_cpus_online = DEFAULT_MAX_CPUS_ONLINE;
 static unsigned int min_cpu_up_time = DEFAULT_MIN_UP_TIME;
