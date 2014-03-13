@@ -882,6 +882,7 @@ static int f2fs_show_options(struct seq_file *seq, struct dentry *root)
 #endif
 	if (test_opt(sbi, DISABLE_EXT_IDENTIFY))
 		seq_puts(seq, ",disable_ext_identify");
+
 //f2fs commit
 	if (test_opt(sbi, INLINE_DATA))
 		seq_puts(seq, ",inline_data");
