@@ -18,15 +18,15 @@
 #include <asm/atomic.h>
 
 #ifndef cpu_relaxed_read_short
-#define cpu_relaxed_read_short(p)	(*(p))
+#define cpu_relaxed_read_short(p)	ldax16(p)
 #endif
 
 #ifndef cpu_relaxed_read
-#define cpu_relaxed_read(p)		(*(p))
+#define cpu_relaxed_read(p)		ldax32(p)
 #endif
 
 #ifndef cpu_relaxed_read_long
-#define cpu_relaxed_read_long(p)	(*(p))
+#define cpu_relaxed_read_long(p)	ldax64((u64 *)p)
 #endif
 
 #include <asm-generic/relaxed.h>
