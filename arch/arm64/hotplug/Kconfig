@@ -10,14 +10,9 @@ config CLUSTER_PLUG
           online, and only activates the little cluster for heavy
           parallel loads
 
-config MSM_HOTPLUG
-        bool "Enable msm-hotplug cpu hotplug driver"
-        default n
-        help
-          A custom based off on qualcomm hotplug driver. Promises great battery life, made by myflux.
-
 config THUNDERPLUG_CONTROL
 	bool "Enable plugging down/up of cores using powersuspend"
 	help
 	  This driver uses powersuspend to take down the cpu cores
  	  on a octa core device.
+
