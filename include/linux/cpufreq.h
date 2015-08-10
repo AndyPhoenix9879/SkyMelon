@@ -438,12 +438,13 @@ extern struct cpufreq_governor cpufreq_gov_interactive_pro;
 #elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_INTELLIACTIVE)
 extern struct cpufreq_governor cpufreq_gov_intelliactive;
 #define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_intelliactive)
-#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_ELEMENTALX)
-extern struct cpufreq_governor cpufreq_gov_elementalx;
-#define CPUFREQ_DEFAULT_GOVERNOR	(&cpufreq_gov_elementalx)
+#elif defined(CONFIG_CPU_FREQ_DEFAULT_GOV_BIOSHOCK)
+extern struct cpufreq_governor cpufreq_gov_bioshock;
+#define CPUFREQ_DEFAULT_GOVERNOR        (&cpufreq_gov_bioshock)
 #endif
 
 /*********************************************************************
+
  *                     FREQUENCY TABLE HELPERS                       *
  *********************************************************************/
 
