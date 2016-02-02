@@ -64,7 +64,7 @@ static void led_blink_setup(struct led_classdev *led_cdev,
 
 	/* blink with 1 Hz as default if nothing specified */
 	if (!*delay_on && !*delay_off)
-		*delay_on = *delay_off = 300;
+		*delay_on = *delay_off = 500;
 
 	led_set_software_blink(led_cdev, *delay_on, *delay_off);
 }
