@@ -137,6 +137,11 @@ config CPU_FREQ_DEFAULT_GOV_INTERACTIVE_PRO
 	help
 	  Use the CPUFreq governor 'interactive_pro' as default.
 
+config CPU_FREQ_DEFAULT_GOV_NIGHTMARE
+	bool "nightmare"
+	select CPU_FREQ_GOV_NIGHTMARE
+	help
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -263,6 +268,10 @@ config CPU_FREQ_GOV_INTERACTIVE_PRO
 	  A governor as well
 
  	  If in doubt, say N.
+
+config CPU_FREQ_GOV_NIGHTMARE
+	tristate "'nightmare' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
