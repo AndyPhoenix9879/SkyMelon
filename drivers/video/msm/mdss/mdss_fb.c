@@ -273,7 +273,7 @@ static void mdss_fb_set_bl_brightness(struct led_classdev *led_cdev,
 	/* MM-GL-DISPLAY-panel-00+] */
 
 	if (mfd->boot_notification_led) {
-		led_trigger_event(mfd->boot_notification_led, 1);
+		led_trigger_event(mfd->boot_notification_led, 0);
 		mfd->boot_notification_led = NULL;
 	}
 

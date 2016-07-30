@@ -56,14 +56,141 @@ static DEFINE_SPINLOCK(tz_lock);
 
 #define TAG "msm_adreno_tz: "
 
+
 /* Boolean to detect if panel has gone off */
 static bool power_suspended = false;
+static unsigned int adrenoboost = 10000;
+static u64 suspend_time;
+static u64 suspend_start;
+static unsigned long acc_total, acc_relative_busy;
 
 struct msm_adreno_extended_profile *partner_gpu_profile;
 static void do_partner_start_event(struct work_struct *work);
 static void do_partner_stop_event(struct work_struct *work);
 static void do_partner_suspend_event(struct work_struct *work);
 static void do_partner_resume_event(struct work_struct *work);
+
+static struct workqueue_struct *workqueue;
+
+/*
+ * Returns GPU suspend time in millisecond.
+ */
+u64 suspend_time_ms(void)
+{
+	u64 suspend_sampling_time;
+	u64 time_diff = 0;
+
+	if (suspend_start == 0)
+		return 0;
+
+	suspend_sampling_time = (u64)ktime_to_ms(ktime_get());
+	time_diff = suspend_sampling_time - suspend_start;
+	/* Update the suspend_start sample again */
+	suspend_start = suspend_sampling_time;
+	return time_diff;
+}
+
+static ssize_t adrenoboost_show(struct device *dev,
+		struct device_attribute *attr, char *buf)
+{
+	size_t count = 0;
+	count += sprintf(buf, "%d\n", adrenoboost);
+
+	return count;
+}
+
+static ssize_t adrenoboost_save(struct device *dev,
+		struct device_attribute *attr, const char *buf, size_t count)
+{
+	int input;
+	sscanf(buf, "%d ", &input);
+	if (input < 0 || input > 50000) {
+		adrenoboost = 0;
+	} else {
+		adrenoboost = input;
+	}
+
+	return count;
+}
+
+
+static ssize_t gpu_load_show(struct device *dev,
+		struct device_attribute *attr,
+		char *buf)
+{
+	unsigned long sysfs_busy_perc = 0;
+	/*
+	 * Average out the samples taken since last read
+	 * This will keep the average value in sync with
+	 * with the client sampling duration.
+	 */
+	spin_lock(&sample_lock);
+	if (acc_total)
+		sysfs_busy_perc = (acc_relative_busy * 100) / acc_total;
+
+	/* Reset the parameters */
+	acc_total = 0;
+	acc_relative_busy = 0;
+	spin_unlock(&sample_lock);
+	return snprintf(buf, PAGE_SIZE, "%lu\n", sysfs_busy_perc);
+}
+
+/*
+ * Returns the time in ms for which gpu was in suspend state
+ * since last time the entry is read.
+ */
+static ssize_t suspend_time_show(struct device *dev,
+	struct device_attribute *attr,
+	char *buf)
+{
+	u64 time_diff = 0;
+
+	spin_lock(&suspend_lock);
+	time_diff = suspend_time_ms();
+	/*
+	 * Adding the previous suspend time also as the gpu
+	 * can go and come out of suspend states in between
+	 * reads also and we should have the total suspend
+	 * since last read.
+	 */
+	time_diff += suspend_time;
+	suspend_time = 0;
+	spin_unlock(&suspend_lock);
+
+	return snprintf(buf, PAGE_SIZE, "%llu\n", time_diff);
+}
+
+static DEVICE_ATTR(adrenoboost, 0644,
+		adrenoboost_show, adrenoboost_save);
+
+static DEVICE_ATTR(gpu_load, 0444, gpu_load_show, NULL);
+
+static DEVICE_ATTR(suspend_time, 0444,
+		suspend_time_show,
+		NULL);
+
+static const struct device_attribute *adreno_tz_attr_list[] = {
+		&dev_attr_gpu_load,
+		&dev_attr_suspend_time,
+		&dev_attr_adrenoboost,
+		NULL
+};
+
+void compute_work_load(struct devfreq_dev_status *stats,
+		struct devfreq_msm_adreno_tz_data *priv,
+		struct devfreq *devfreq)
+{
+	spin_lock(&sample_lock);
+	/*
+	 * Keep collecting the stats till the client
+	 * reads it. Average of all samples and reset
+	 * is done when the entry is read
+	 */
+	acc_total += stats->total_time;
+	acc_relative_busy += (stats->busy_time * stats->current_frequency) /
+				devfreq->profile->freq_table[0];
+	spin_unlock(&sample_lock);
+}
 
 /* Trap into the TrustZone, and call funcs there. */
 static int __secure_tz_reset_entry2(unsigned int *scm_data, u32 size_scm_data,
@@ -249,7 +376,8 @@ static int tz_get_target_freq(struct devfreq *devfreq, unsigned long *freq,
 
 		scm_data[0] = level;
 		scm_data[1] = priv->bin.total_time;
-		scm_data[2] = priv->bin.busy_time;
+		scm_data[2] = priv->bin.busy_time + (level * adrenoboost);
+		scm_data[3] = context_count;
 		__secure_tz_update_entry3(scm_data, sizeof(scm_data),
 					&val, sizeof(val), priv->is_64);
 	}
