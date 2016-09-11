@@ -56,6 +56,9 @@ static DEFINE_SPINLOCK(tz_lock);
 
 #define TAG "msm_adreno_tz: "
 
+#if 1
+static unsigned int adrenoboost = 0;
+#endif
 
 /* Boolean to detect if panel has gone off */
 static bool power_suspended = false;
