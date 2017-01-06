@@ -1,9 +1,3 @@
-config INTELLI_PLUG
-        bool "Enable intelli-plug cpu hotplug driver"
-        default n
-        help
-          Generic Intelli-plug cpu hotplug driver for ARM SOCs
-
 config CLUSTER_PLUG
         bool "Enable cluster-plug cpu hotplug driver"
         default n
