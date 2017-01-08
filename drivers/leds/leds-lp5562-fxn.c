@@ -968,7 +968,7 @@ static ssize_t led_control( void *node_data, struct device_attribute *attr, cons
     for (i=0; i<LP55XX_ENGINE_MAX; i++) {
 	    data->sw_brightness[i] = 255;
 	    data->led_on_interval[i] = 100;
-	    data->led_off_interval[i] = 900;
+	    data->led_off_interval[i] = 100;
 	}
     
 	while( pointer < rem_size )
