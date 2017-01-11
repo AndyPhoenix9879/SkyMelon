@@ -24,12 +24,8 @@
 #include <linux/cdev.h>
 #include <linux/regulator/consumer.h>
 #include <linux/mm.h>
-<<<<<<< HEAD
-=======
-#include <linux/dma-attrs.h>
-#include <linux/uaccess.h>
 #include <linux/kthread.h>
->>>>>>> c180070... kgsl: convert some workqueues to use kthreads
+
 
 /* The number of memstore arrays limits the number of contexts allowed.
  * If more contexts are needed, update multiple for MEMSTORE_SIZE
