@@ -389,7 +389,7 @@ KBUILD_CFLAGS   := $(GRAPHITE) -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs 
 		   -fno-delete-null-pointer-checks \
 		   -ftree-loop-vectorize -ftree-loop-distribute-patterns -ftree-slp-vectorize \
             -fvect-cost-model -ftree-partial-pre \
-		   -mcpu=cortex-a57.cortex-a53 -mtune=cortex-a57.cortex-a53 \
+		   -mcpu=cortex-a53 -mtune=cortex-a53 \
 		   -fno-aggressive-loop-optimizations \
             -fgcse-lm -fgcse-sm -fsched-spec-load -fsingle-precision-constant
 KBUILD_AFLAGS_KERNEL :=
