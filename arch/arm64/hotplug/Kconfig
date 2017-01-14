@@ -10,17 +10,4 @@ config CLUSTER_PLUG
           online, and only activates the little cluster for heavy
           parallel loads
 
-config BRICKED_HOTPLUG
-	bool "Enable kernel based mpdecision"
-	depends on MSM_RUN_QUEUE_STATS
-	default n
-	help
-	  This enables kernel based multi core control
-
-config HIMA_HOTPLUG
-        bool "Enable hima-hotplug cpu hotplug driver"
-	depends on STATE_NOTIFIER
-        default n
-        help
-          Generic cpu hotplugging driver for ARM SOCs
 
