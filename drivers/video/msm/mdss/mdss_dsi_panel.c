@@ -117,6 +117,9 @@ unsigned char mdss_manufacture_id(struct mdss_dsi_ctrl_pdata *ctrl)
 
 	return gPanelModel;
 }
+extern void lazyplug_enter_lazy(bool enter);
+
+bool display_on = true;
 
 int mdss_change_dcs_cmd(struct device_node *npIn,
 		struct mdss_dsi_ctrl_pdata *ctrl, const char* name, const int id)
@@ -954,6 +957,8 @@ static int mdss_dsi_post_panel_on(struct mdss_panel_data *pdata)
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+	display_on = true;
+	lazyplug_enter_lazy(false);
 
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
 				panel_data);
@@ -1009,6 +1014,9 @@ static int mdss_dsi_panel_off(struct mdss_panel_data *pdata)
 		mdss_dsi_panel_cmds_send(ctrl, &ctrl->off_cmds);
 
 	pr_info("[DISPLAY]%s: -\n", __func__);
+	display_on = false;
+	lazyplug_enter_lazy(true);
+
 
 end:
 	pinfo->blank_state = MDSS_PANEL_BLANK_BLANK;
