@@ -821,7 +821,7 @@ static int mdss_fb_probe(struct platform_device *pdev)
 	mfd->ext_ad_ctrl = -1;
 	mfd->bl_level = 0;
 	mfd->bl_scale = 1024;
-	mfd->bl_min_lvl = 19;/* MM-GL-DISPLAY-panel-00+ */
+	mfd->bl_min_lvl = 1;/* MM-GL-DISPLAY-panel-00+ */
 	mfd->ad_bl_level = 0;
 	mfd->fb_imgType = MDP_RGBA_8888;
 
