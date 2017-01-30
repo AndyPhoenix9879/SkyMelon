@@ -1333,7 +1333,6 @@ static inline u64 steal_ticks(u64 steal)
 }
 #endif
 
-static inline void inc_nr_running(struct rq *rq)
 #define NR_AVE_PERIOD_EXP	28
 #define NR_AVE_SCALE(x)		((x) << FSHIFT)
 #define NR_AVE_PERIOD		(1 << NR_AVE_PERIOD_EXP)
@@ -1356,7 +1355,7 @@ static inline unsigned int do_avg_nr_running(struct rq *rq)
 	return ave_nr_running;
 }
 
-static inline void add_nr_running(struct rq *rq, unsigned count)
+static inline void inc_nr_running(struct rq *rq)
 {
 	sched_update_nr_prod(cpu_of(rq), rq->nr_running, true);
 	rq->nr_running++;
