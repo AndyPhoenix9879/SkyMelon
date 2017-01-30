@@ -21,7 +21,7 @@
 #include <linux/leds.h>
 #include <linux/qpnp/pwm.h>
 #include <linux/err.h>
-
+#include <linux/display_state.h>
 #include "mdss_dsi.h"
 
 #define DT_CMD_HDR 6
@@ -36,6 +36,16 @@
 #define DEFAULT_MDP_TRANSFER_TIME 14000
 
 DEFINE_LED_TRIGGER(bl_led_trigger);
+
+extern void lazyplug_enter_lazy(bool enter);
+
+bool display_on = true;
+
+bool is_display_on()
+{
+	return display_on;
+}
+
 /* MM-GL-DISPLAY-panel-00+[ */
 #define JDI_NON_PANEL_ID  0x00
 #define JDI_PANEL_ID      0x61
@@ -872,6 +882,8 @@ static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 		pr_err("%s: Invalid input data\n", __func__);
 		return -EINVAL;
 	}
+
+	display_on = true;
 
 	pinfo = &pdata->panel_info;
 	ctrl = container_of(pdata, struct mdss_dsi_ctrl_pdata,
