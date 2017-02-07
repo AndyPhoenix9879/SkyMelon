@@ -35,13 +35,13 @@ echo ""
 echo -e "${WHITE}Building the boot.img for all variant${WHITE}"
 echo ""
 cd /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/
-./mkbootimg --cmdline "console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk" --base 0x81dfff00 --kernel /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/boot.all/Image.gz-dtb --ramdisk /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/boot.all/ramdisk.packed --ramdisk_offset 0x82000000 --pagesize 2048 --tags_offset 0x81E00000 -o SkyMelonv5-allvariant.img
+./mkbootimg --cmdline "console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk" --base 0x81dfff00 --kernel /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/boot.all/Image.gz-dtb --ramdisk /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/boot.all/ramdisk.packed --ramdisk_offset 0x82000000 --pagesize 2048 --tags_offset 0x81E00000 -o SkyMelonv5-final.img
 
 echo ""
 
 echo -e "${WHITE}Finalizing${WHITE}"
 echo ""
-cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/SkyMelonv5-allvariant.img /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/SkyMelonV5
+cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/SkyMelonv5-final.img /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/SkyMelonV5
 
 echo ""
 
