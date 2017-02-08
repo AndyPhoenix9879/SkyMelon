@@ -574,32 +574,12 @@ config MSM_PERFORMANCE_HOTPLUG_ON
 config FORCE_FAST_CHARGE
 	bool "Force faster charge rate for AC/USB"
 	default y
-<<<<<<< HEAD
  	help
 	  This feature provides access to certain boot information
 	  from both kernel context (via function call) and user
 	  context (via /proc/bootinfo).
 	  This allows users to override default charge rate for both USB and AC
 	  charger input current
-=======
-	help
-	  The MSM Frequency Limiter Driver controls max frequency limit for each CPU
-	  to desired value on suspend/resume
-
-config MSM_HOTPLUG
-	bool "MSM hotplug driver"
-	depends on HOTPLUG_CPU
-	default y
-	help
-	  The MSM hotplug driver controls on-/offlining of additional cores based
-	  on current cpu load.
-	  
-config ALUCARD_HOTPLUG
-	bool "Enable alucard-hotplug cpu hotplug driver"
- 	default n
- 	help
-	Generic Alucard-hotplug cpu hotplug driver for ARM SOCs
->>>>>>> 6d71ec5... Drivers: Add Alucard Hotplug By Alucard24
 
 source "drivers/soc/qcom/memshare/Kconfig"
 
