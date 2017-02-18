@@ -249,8 +249,7 @@
 			<  5346 /*  350.4 MHz */ >,
 			<  5712 /*  374.4 MHz */ >,
 			<  6079 /*  398.4 MHz */ >,
-			<  6200 /*  lazy to calc */ >,
-			<  6409 /*  420.3 MHz */ >;
+			<  6200 /*  lazy to calc */ >;
 	};
 
 	mincpubw: qcom,mincpubw {
@@ -265,8 +264,7 @@
 			<  5346 /*  350.4 MHz */ >,
 			<  5712 /*  374.4 MHz */ >,
 			<  6079 /*  398.4 MHz */ >,
-			<  6200 /*  lazy to calc */ >,
-			<  6409 /*  420.3 MHz */ >;
+			<  6200 /*  lazy to calc */ >;
 	};
 
 	devfreq-cpufreq {
