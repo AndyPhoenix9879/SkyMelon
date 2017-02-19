@@ -411,7 +411,6 @@ static DECLARE_WORK(cpu_all_up_work, cpu_all_up);
 static void cpu_all_up(struct work_struct *work)
 {
 	cpu_all_ctrl(true);
-	wakeup_boost();
 }
 
 #ifdef CONFIG_POWERSUSPEND
