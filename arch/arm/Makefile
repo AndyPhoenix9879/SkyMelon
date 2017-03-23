@@ -77,7 +77,7 @@ arch-$(CONFIG_CPU_32v3)		:=-D__LINUX_ARM_ARCH__=3 -march=armv3
 # keep things simpler, we don't bother with a fallback option if the compiler
 # doesn't even support -march=armv7-a, since in that situation we would have
 # bigger problems.
-arch-$(CONFIG_ARCH_MSM8916)	:=-Ofast -fgcse-las -fpredictive-commoning -D__LINUX_ARM_ARCH__=7 $(call cc-option,-mcpu=cortex-a53,-march=armv8-a)
+arch-$(CONFIG_ARCH_MSM8916)	:=-D__LINUX_ARM_ARCH__=7 $(call cc-option,-mcpu=cortex-a53,-march=armv8-a)
 
 # This selects how we optimise for the processor.
 tune-$(CONFIG_CPU_ARM7TDMI)	:=-mtune=arm7tdmi
