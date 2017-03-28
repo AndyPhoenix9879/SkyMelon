@@ -110,6 +110,7 @@ static ssize_t show_time_in_state(struct cpufreq_policy *policy, char *buf)
 		len += sprintf(buf + len, "%u %llu\n", stat->freq_table[i],
 			(unsigned long long)
 			jiffies_64_to_clock_t(stat->time_in_state[i]));
+
 	}
 	return len;
 }
@@ -123,6 +124,7 @@ static int get_index_all_cpufreq_stat(struct all_cpufreq_stats *all_stat,
 	for (i = 0; i < all_stat->state_num; i++) {
 		if (all_stat->freq_table[i] == freq)
 			return i;
+
 	}
 	return -1;
 }
