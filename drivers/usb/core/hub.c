@@ -5059,10 +5059,9 @@ static void hub_events(void)
  loop_disconnected:
 		usb_unlock_device(hdev);
 		usb_put_dev(hdev);
-<<<<<<< HEAD
+//.56
  hub_disconnected:
-=======
->>>>>>> v3.10.56
+//.56
 		kref_put(&hub->kref, hub_release);
 
         } /* end while (1) */
