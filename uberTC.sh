@@ -45,7 +45,7 @@ echo ""
 echo -e "${WHITE}Copying to 'assembly folder'${WHITE}"
 echo ""
 cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/mkbootimg_tools/V7.img /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools
-#cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/SkyMelon/drivers/staging/prima/wlan.ko /media/lai/89691967-1da1-4925-aefa-273bc0864b75/Kernelcooking/SkyMelonV7
+cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/SkyMelon/drivers/staging/prima/wlan.ko /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools
 
 echo -e "${WHITE}Building the zip file${WHITE}"
 echo ""
