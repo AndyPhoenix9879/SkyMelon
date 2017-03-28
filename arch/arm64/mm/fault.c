@@ -221,7 +221,11 @@ static int __kprobes do_page_fault(unsigned long addr, unsigned int esr,
 
 	if (esr & ESR_LNX_EXEC) {
 		vm_flags = VM_EXEC;
+
 	} else if (esr & ESR_EL1_WRITE) {
+//.70
+//nope	} else if ((esr & ESR_WRITE) && !(esr & ESR_CM)) { though I think we can just add that EL1 into it lol
+//.70
 		vm_flags = VM_WRITE;
 		mm_flags |= FAULT_FLAG_WRITE;
 	}

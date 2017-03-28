@@ -318,6 +318,7 @@ int module_finalize(const Elf32_Ehdr *hdr, const Elf_Shdr *sechdrs,
 			maps[ARM_SEC_HOT].txt_sec = s;
 		else if (strcmp(".ref.text", secname) == 0)
 			maps[ARM_SEC_REF].txt_sec = s;
+
 	}
 
 	for (i = 0; i < ARM_SEC_MAX; i++)
