@@ -62,14 +62,12 @@ unsigned long profile_pc(struct pt_regs *regs)
 }
 EXPORT_SYMBOL(profile_pc);
 #endif
-
-static u64 sched_clock_mult __read_mostly;
-
-unsigned long long notrace sched_clock(void)
-{
-	return arch_timer_read_counter() * sched_clock_mult;
-}
-
+//.80
+//static u64 sched_clock_mult __read_mostly;
+//unsigned long long notrace sched_clock(void)
+//{
+//	return arch_timer_read_counter() * sched_clock_mult;
+//}
 //.80
 void __init time_init(void)
 {
