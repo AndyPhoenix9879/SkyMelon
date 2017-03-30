@@ -1277,7 +1277,7 @@ int prepare_binprm(struct linux_binprm *bprm)
 	struct inode * inode = file_inode(bprm->file);
 	int retval;
 
-	mode = inote->i_mode;
+	mode = inode->i_mode;
 	if (bprm->file->f_op == NULL)
 		return -EACCES;
 
