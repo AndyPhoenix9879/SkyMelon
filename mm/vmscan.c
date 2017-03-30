@@ -910,6 +910,7 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		 *    reclaim. Wait for the writeback to complete.
 		 */
 		if (PageWriteback(page)) {
+//<<<<<<< HEAD
 			/* Case 1 above */
 			if (current_is_kswapd() &&
 			    PageReclaim(page) &&
@@ -920,6 +921,22 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 			/* Case 2 above */
 			} else if (global_reclaim(sc) ||
 			    !PageReclaim(page) || !(sc->gfp_mask & __GFP_IO)) {
+//=======
+			/*
+			 * memcg doesn't have any dirty pages throttling so we
+			 * could easily OOM just because too many pages are in
+			 * writeback and there is nothing else to reclaim.
+			 *
+			 * Require may_enter_fs to wait on writeback, because
+			 * fs may not have submitted IO yet. And a loop driver
+			 * thread might enter reclaim, and deadlock if it waits
+			 * on a page for which it is needed to do the write
+			 * (loop masks off __GFP_IO|__GFP_FS for this reason);
+			 * but more thought would probably show more reasons.
+			 */
+//			if (global_reclaim(sc) ||
+//			    !PageReclaim(page) || !may_enter_fs) {
+//>>>>>>> v3.10.92
 				/*
 				 * This is slightly racy - end_page_writeback()
 				 * might have just cleared PageReclaim, then

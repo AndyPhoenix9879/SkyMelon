@@ -1277,10 +1277,11 @@ int prepare_binprm(struct linux_binprm *bprm)
 	struct inode * inode = file_inode(bprm->file);
 	int retval;
 
-	mode = inode->i_mode;
+	mode = inote->i_mode;
 	if (bprm->file->f_op == NULL)
 		return -EACCES;
 
+//<<<<<<< HEAD
 	/* clear any previous set[ug]id data from a previous binary */
 	bprm->cred->euid = current_euid();
 	bprm->cred->egid = current_egid();
@@ -1306,6 +1307,9 @@ int prepare_binprm(struct linux_binprm *bprm)
 			bprm->cred->egid = inode->i_gid;
 		}
 	}
+//=======
+//	bprm_fill_uid(bprm);
+//>>>>>>> v3.10.92
 
 	/* fill in binprm security blob */
 	retval = security_bprm_set_creds(bprm);

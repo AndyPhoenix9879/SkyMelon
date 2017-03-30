@@ -534,6 +534,7 @@ EXPORT_SYMBOL(mmc_start_bkops);
  */
 static void mmc_wait_data_done(struct mmc_request *mrq)
 {
+//<<<<<<< HEAD
 	unsigned long flags;
 	struct mmc_context_info *context_info = &mrq->host->context_info;
 
@@ -561,6 +562,12 @@ void mmc_start_idle_time_bkops(struct work_struct *work)
 		return;
 
 	mmc_start_bkops(card, false);
+//=======
+//	struct mmc_context_info *context_info = &mrq->host->context_info;
+//
+//	context_info->is_done_rcv = true;
+//	wake_up_interruptible(&context_info->wait);
+//>>>>>>> v3.10.92
 }
 EXPORT_SYMBOL(mmc_start_idle_time_bkops);
 

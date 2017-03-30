@@ -138,6 +138,7 @@ pipe_iov_copy_from_user(void *addr, int *offset, struct iovec *iov,
 		}
 		*offset += copy;
 		*remaining -= copy;
+
                 iov->iov_base += copy;
 		iov->iov_len -= copy;
 	}
@@ -166,7 +167,9 @@ pipe_iov_copy_to_user(struct iovec *iov, void *addr, int *offset,
 		}
 		*offset += copy;
 		*remaining -= copy;
+
                 iov->iov_base += copy;
+
 		iov->iov_len -= copy;
 	}
 	return 0;
@@ -413,6 +416,7 @@ pipe_read(struct kiocb *iocb, const struct iovec *_iov,
 			}
 
 			atomic = !iov_fault_in_pages_write(iov, chars);
+
                         remaining = chars;
                         offset = buf->offset;
 redo:
@@ -433,7 +437,9 @@ redo:
 				break;
 			}
 			ret += chars;
+
                         buf->offset += chars;
+
 			buf->len -= chars;
 
 			/* Was it a packet buffer? Clean up and exit */
@@ -538,6 +544,7 @@ pipe_write(struct kiocb *iocb, const struct iovec *_iov,
 		if (ops->can_merge && offset + chars <= PAGE_SIZE) {
 			int error, atomic = 1;
 			void *addr;
+
                         size_t remaining = chars;
 			error = ops->confirm(pipe, buf);
 			if (error)
@@ -584,6 +591,7 @@ redo1:
 			int error, atomic = 1;
 			int offset = 0;
 			size_t remaining;
+
 			if (!page) {
 				page = alloc_page(GFP_HIGHUSER);
 				if (unlikely(!page)) {
@@ -603,6 +611,7 @@ redo1:
 				chars = total_len;
 
 			iov_fault_in_pages_read(iov, chars);
+
                         remaining = chars;
 redo2:
 			if (atomic)
