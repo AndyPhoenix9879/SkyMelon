@@ -203,13 +203,13 @@ static void cyttsp5_get_mt_touches(struct cyttsp5_mt_data *md,
 	bitmap_zero(ids, max_tch);
 	memset(tch->abs, 0, sizeof(tch->abs));
 
-	/* PERI-FG-TOUCH_WORKAROUND-00+[ */
+	/* PERI-FG-TOUCH_WORKAROUND-00+[
 	if (!mdss_display_power_state())
 	{
 		dev_dbg(dev, "ETUCH : Skip touch events\n" );
 		return;
 	}
-	/* PERI-FG-TOUCH_WORKAROUND-00+] */
+	PERI-FG-TOUCH_WORKAROUND-00+] */
 
 	for (i = 0; i < num_cur_tch; i++) {
 		tch_addr = si->xy_data + (i * si->desc.tch_record_size);
