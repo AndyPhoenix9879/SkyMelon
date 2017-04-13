@@ -111,13 +111,13 @@ static void cyttsp4_get_mt_touches(struct cyttsp4_mt_data *md, int num_cur_rec)
 
 	bitmap_zero(ids, si->si_ofs.tch_abs[CY_TCH_T].max);
 
-	/* PERI-FG-TOUCH_WORKAROUND-00+[ */
+	/* PERI-FG-TOUCH_WORKAROUND-00+[
 	if (!mdss_display_power_state())
 	{
 		printk( "ETUCH : Skip touch events\n" );
 		return;
 	}
-	/* PERI-FG-TOUCH_WORKAROUND-00+] */
+	 PERI-FG-TOUCH_WORKAROUND-00+] */
 
 	for (i = 0; i < num_cur_rec; i++) {
 		cyttsp4_get_touch_record(md->ttsp, i, tch.abs);
@@ -237,7 +237,7 @@ cyttsp4_get_mt_touches_pr_tch:
 			if( t < sizeof( pointer_state ) / sizeof( *pointer_state ) )
 			{
 				struct pointer_information	*finger_state = pointer_state + finger;
-				bool	down = finger_state->down_state;
+				//bool	down = finger_state->down_state;
 				int	action = tch.abs[CY_TCH_E];
 
 				if( action == CY_EV_TOUCHDOWN )
@@ -249,8 +249,9 @@ cyttsp4_get_mt_touches_pr_tch:
 				if( action == CY_EV_LIFTOFF )
 					finger_state->down_state	= false;
 
-				if( down != finger_state->down_state )
-					printk( "ETUCH : <%d>(%s)[%d:%d:%d]|[%d,%d]\n", finger, finger_state->down_state ? "down" : "up", tch.abs[CY_TCH_X], tch.abs[CY_TCH_Y], tch.abs[CY_TCH_P], tch.abs[CY_TCH_OR], finger_state->pointer_count );
+				/*if( down != finger_state->down_state )
+					pr_debug("ETUCH : <%d>(%s)[%d:%d:%d]|[%d,%d]\n", finger, finger_state->down_state ? "down" : "up", tch.abs[CY_TCH_X], tch.abs[CY_TCH_Y], tch.abs[CY_TCH_P], tch.abs[CY_TCH_OR], finger_state->pointer_count );*/
+
 			}
 		}
 
