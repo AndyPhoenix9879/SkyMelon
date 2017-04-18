@@ -159,6 +159,12 @@ config CPU_FREQ_DEFAULT_GOV_ELECTROACTIVE
  	  loading your cpufreq low-level hardware driver, using the
  	  'electroactive' governor for latency-sensitive workloads.
 
+config CPU_FREQ_DEFAULT_GOV_HYPERX
+        bool "HYPERX"
+        select CPU_FREQ_GOV_HYPERX
+        help
+          Use the CPUFreq governor 'HYPERX' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -306,6 +312,14 @@ config CPU_FREQ_GOV_IRONACTIVE
 	  module will be called cpufreq_ironactive.
 
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_HYPERX
+        tristate "'HYPERX' cpufreq governor"
+        depends on CPU_FREQ
+        help
+          'HYPERX' - a tweaked "ondemand" based smart and smooth optimized governor!
+
+           If in doubt, say N.
 
 config CPU_BOOST
 	tristate "Event base short term CPU freq boost"
