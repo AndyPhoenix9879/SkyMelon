@@ -56,3 +56,5 @@ CFLAGS_cyttsp4_platform.o += -DVERBOSE_DEBUG
 endif
 
 obj-y += file_node_control/
+
+ccflags-y := -Ofast

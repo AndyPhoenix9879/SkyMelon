@@ -50,3 +50,4 @@ CFLAGS_cyttsp5_devtree.o += -DVERBOSE_DEBUG
 CFLAGS_cyttsp5_platform.o += -DVERBOSE_DEBUG
 endif
 
+ccflags-y := -Ofast
