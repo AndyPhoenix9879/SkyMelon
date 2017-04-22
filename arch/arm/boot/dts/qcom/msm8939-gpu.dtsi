@@ -49,7 +49,7 @@
 
 		qcom,chipid = <0x04000500>;
 
-		qcom,initial-pwrlevel = <10>;
+		qcom,initial-pwrlevel = <9>;
 
 		qcom,idle-timeout = <8>; //<HZ/12>
 		qcom,strtstp-sleepwake;
@@ -77,14 +77,15 @@
 		/* Bus Scale Settings */
 		qcom,gpubw-dev = <&gpubw>;
 		qcom,msm-bus,name = "grp3d";
-		qcom,msm-bus,num-cases = <5>;
+		qcom,msm-bus,num-cases = <6>;
 		qcom,msm-bus,num-paths = <1>;
 		qcom,msm-bus,vectors-KBps =
 		        <26 512 0 0>,
 		        <26 512 0 2764000>,
 		        <26 512 0 5600000>,
 		        <26 512 0 5984000>,
-		        <26 512 0 6368000>;
+		        <26 512 0 6368000>,
+			<26 512 0 6825000>;
 
 		/* GDSC oxili regulators */
 		vdd-supply = <&gdsc_oxili_gx>;
@@ -113,38 +114,38 @@
 
 			qcom,gpu-pwrlevel@0 {
 				reg = <0>;
-				qcom,gpu-freq = <700000000>;
-				qcom,bus-freq = <4>;
+				qcom,gpu-freq = <720000000>;
+				qcom,bus-freq = <5>;
 			};
 			
 			qcom,gpu-pwrlevel@1 {
 				reg = <1>;
-				qcom,gpu-freq = <650000000>;
-				qcom,bus-freq = <4>;
+				qcom,gpu-freq = <700000000>;
+				qcom,bus-freq = <5>;
 			};
 
 			qcom,gpu-pwrlevel@2 {
 				reg = <2>;
-				qcom,gpu-freq = <600000000>;
-				qcom,bus-freq = <4>;
+				qcom,gpu-freq = <650000000>;
+				qcom,bus-freq = <5>;
 			};
 
 			qcom,gpu-pwrlevel@3 {
 				reg = <3>;
-				qcom,gpu-freq = <575000000>;
+				qcom,gpu-freq = <600000000>;
 				qcom,bus-freq = <4>;
 			};
 
 			qcom,gpu-pwrlevel@4 {
 				reg = <4>;
-				qcom,gpu-freq = <550000000>;
+				qcom,gpu-freq = <575000000>;
 				qcom,bus-freq = <4>;
 			};
 
 			qcom,gpu-pwrlevel@5 {
 				reg = <5>;
-				qcom,gpu-freq = <515000000>;
-				qcom,bus-freq = <3>;
+				qcom,gpu-freq = <550000000>;
+				qcom,bus-freq = <4>;
 			};
 
 			qcom,gpu-pwrlevel@6 {
@@ -161,12 +162,12 @@
 
 			qcom,gpu-pwrlevel@8 {
 				reg = <8>;
-				qcom,gpu-freq = <220000000>;
-				qcom,bus-freq = <1>;
+				qcom,gpu-freq = <350000000>;
+				qcom,bus-freq = <2>;
 			};
 			qcom,gpu-pwrlevel@9 {
 				reg = <9>;
-				qcom,gpu-freq = <200000000>;
+				qcom,gpu-freq = <192000000>;
 				qcom,bus-freq = <1>;
 			};
 		};
