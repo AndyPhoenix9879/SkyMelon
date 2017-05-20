@@ -163,8 +163,8 @@
 				qcom,gpu-freq = <178000000>;
 				qcom,bus-freq = <1>;
 			};
-			qcom,gpu-pwrlevel@8 {
-				reg = <8>;
+			qcom,gpu-pwrlevel@9 {
+				reg = <9>;
 				qcom,gpu-freq = <19200000>;
 				qcom,bus-freq = <1>;
 			};
