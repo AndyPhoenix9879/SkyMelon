@@ -50,12 +50,14 @@ cp /media/lai/89691967-1da1-4925-aefa-273bc0864b75/SkyMelon/drivers/staging/prim
 echo -e "${WHITE}Building the zip file${WHITE}"
 echo ""
 cd /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools
+cp wlan.ko /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools/zipme
+cp init.qcom.post_boot.sh /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools/zipme
 ./packzip.sh
 
 echo -e "${WHITE}Finalizing..${WHITE}"
 echo ""
 cd /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools/
 zip -m 7e.zip boot.img
-zip -m 7e.zip wlan.ko
+
 
 echo -e "${GREEN}The kernel has been built successfully!${NCOLOR}"
