@@ -494,11 +494,11 @@ static int chg_time[] = {
 
 static int input_current_limit[] = {
 	300, 400, 450, 500, 600, 700, 800, 850, 900,
-	950, 1000, 1100, 1200, 1300, 1400, 1500,
+	950, 1000, 1100, 1200, 1300, 1400, 1500, 1700
 };
 
 static int fastchg_current[] = {
-	450, 600, 750, 900, 1050, 1200, 1350, 1500,
+	450, 600, 750, 900, 1050, 1200, 1350, 1500, 1700,
 };
 
 static int is_between(int value, int left, int right)
