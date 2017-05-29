@@ -85,7 +85,7 @@
 
 		qcom,cpr-fuse-corners = <3>;
 		qcom,cpr-voltage-ceiling = <1010000 1100000 1355000>;
-		qcom,cpr-voltage-floor = <1010000 1000000 1255000>;
+		qcom,cpr-voltage-floor = <1010000 1000000 1265000>;
 		vdd-apc-supply = <&ncp6335d>;
 
 		qcom,vdd-mx-corner-map = <4 5 7>;
