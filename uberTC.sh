@@ -58,6 +58,6 @@ echo -e "${WHITE}Finalizing..${WHITE}"
 echo ""
 cd /media/lai/89691967-1da1-4925-aefa-273bc0864b75/build_tools/
 zip -m 7e.zip boot.img
-
+mv 7e.zip 9-${TIMESTAMP}.zip
 
 echo -e "${GREEN}The kernel has been built successfully!${NCOLOR}"
