@@ -155,12 +155,12 @@
 
 			qcom,gpu-pwrlevel@7 {
 				reg = <7>;
-				qcom,gpu-freq = <285000000>;
+				qcom,gpu-freq = <385000000>;
 				qcom,bus-freq = <2>;
 			};
 			qcom,gpu-pwrlevel@8 {
 				reg = <8>;
-				qcom,gpu-freq = <178000000>;
+				qcom,gpu-freq = <285000000>;
 				qcom,bus-freq = <1>;
 			};
 			qcom,gpu-pwrlevel@9 {
