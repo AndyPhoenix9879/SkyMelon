@@ -8,7 +8,7 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NCOLOR='\033[0m'
 
-export CROSS_COMPILE=/media/lai/89691967-1da1-4925-aefa-273bc0864b75/aarch64-linux-android-4.9-kernel/bin/aarch64-linux-android-
+export CROSS_COMPILE=/media/lai/89691967-1da1-4925-aefa-273bc0864b75/aarch64-linux-android-4.9/bin/aarch64-linux-android-
 
 echo -e "${WHITE}Cleaning up${NCOLOR}"
 make mrproper
