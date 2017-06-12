@@ -122,7 +122,6 @@ DEFINE_SPINLOCK(unix_table_lock);
 EXPORT_SYMBOL_GPL(unix_table_lock);
 static atomic_long_t unix_nr_socks;
 
-
 static struct hlist_head *unix_sockets_unbound(void *addr)
 {
 	unsigned long hash = (unsigned long)addr;
@@ -2307,7 +2306,6 @@ next_bucket:
 		bucket = get_bucket(*pos) + 1;
 		*pos = set_bucket_offset(bucket, 1);
 	} while (bucket < ARRAY_SIZE(unix_socket_table));
-
 	return NULL;
 }
 

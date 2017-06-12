@@ -468,7 +468,7 @@ Example:
 		qcom,mdss-dsi-dma-trigger = <0>;
 		qcom,mdss-dsi-panel-framerate = <60>;
 		qcom,mdss-dsi-panel-clockrate = <424000000>;
-		qcom,mdss-mdp-transfer-time-us = <12500>;
+		qcom,mdss-mdp-transfer-time-us = <11500>;
 		qcom,mdss-dsi-panel-timings = [7d 25 1d 00 37 33
 					22 27 1e 03 04 00];
 		qcom,mdss-dsi-on-command = [32 01 00 00 00 00 02 00 00

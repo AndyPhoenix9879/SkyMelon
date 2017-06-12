@@ -44,6 +44,7 @@ config ARM64
 	select HAVE_DMA_CONTIGUOUS
 	select HAVE_DYNAMIC_FTRACE
 	select HAVE_EFFICIENT_UNALIGNED_ACCESS
+	select DCACHE_WORD_ACCESS
 	select HAVE_FTRACE_MCOUNT_RECORD
 	select HAVE_FUNCTION_TRACER
 	select HAVE_FUNCTION_GRAPH_TRACER
@@ -250,6 +251,8 @@ config ARCH_XGENE
 
 endmenu
 
+source "arch/arm64/hotplug/Kconfig"
+
 menu "Bus support"
 
 config ARM_AMBA
@@ -421,7 +424,7 @@ config SWP_EMULATE
 
 config HZ
 	int
-	default 100
+	default 300
 
 config ARCH_HAS_HOLES_MEMORYMODEL
 	def_bool y if SPARSEMEM

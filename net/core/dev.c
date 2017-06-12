@@ -927,7 +927,7 @@ bool dev_valid_name(const char *name)
 		return false;
 
 	while (*name) {
-		if (*name == '/' || isspace(*name))
+		if (*name == '/' || *name == ':' || isspace(*name))
 			return false;
 		name++;
 	}
@@ -6021,6 +6021,7 @@ static int dev_cpu_callback(struct notifier_block *nfb,
 	 */
 	while (!list_empty(&oldsd->poll_list)) {
 		struct napi_struct *napi = list_first_entry(&oldsd->poll_list,
+
 							struct napi_struct,
 							poll_list);
 
@@ -6040,7 +6041,11 @@ static int dev_cpu_callback(struct notifier_block *nfb,
 		input_queue_head_incr(oldsd);
 	}
 	while ((skb = skb_dequeue(&oldsd->input_pkt_queue))) {
+
 		kfree_skb(skb);
+//.70
+		netif_rx(skb);
+//.70
 		input_queue_head_incr(oldsd);
 	}
 

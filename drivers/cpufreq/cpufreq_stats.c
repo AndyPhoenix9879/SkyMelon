@@ -110,6 +110,7 @@ static ssize_t show_time_in_state(struct cpufreq_policy *policy, char *buf)
 		len += sprintf(buf + len, "%u %llu\n", stat->freq_table[i],
 			(unsigned long long)
 			jiffies_64_to_clock_t(stat->time_in_state[i]));
+
 	}
 	return len;
 }
@@ -123,6 +124,7 @@ static int get_index_all_cpufreq_stat(struct all_cpufreq_stats *all_stat,
 	for (i = 0; i < all_stat->state_num; i++) {
 		if (all_stat->freq_table[i] == freq)
 			return i;
+
 	}
 	return -1;
 }
@@ -438,7 +440,6 @@ static void cpufreq_powerstats_create(unsigned int cpu,
 	unsigned int alloc_size, i = 0, j = 0, ret = 0;
 	struct cpufreq_power_stats *powerstats;
 	struct device_node *cpu_node;
-	char device_path[16];
 
 	powerstats = kzalloc(sizeof(struct cpufreq_power_stats),
 			GFP_KERNEL);
@@ -466,8 +467,7 @@ static void cpufreq_powerstats_create(unsigned int cpu,
 	}
 	powerstats->state_num = j;
 
-	snprintf(device_path, sizeof(device_path), "/cpus/cpu@%d", cpu);
-	cpu_node = of_find_node_by_path(device_path);
+	cpu_node = of_get_cpu_node(cpu, NULL);
 	if (cpu_node) {
 		ret = of_property_read_u32_array(cpu_node, "current",
 				powerstats->curr, count);
