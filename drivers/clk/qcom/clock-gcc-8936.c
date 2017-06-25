@@ -837,15 +837,15 @@ static struct clk_freq_tbl ftbl_gcc_oxili_gfx3d_clk[] = {
 	F( 250000000,      gpll0_out_main,   5,	  0,	0),
 	F( 266670000,      gpll0_out_main,   3,	  0,	0),
 	F( 285000000,      gpll3_out_main,   3,   0,    0),
-	F( 310000000,	gpll2_gfx3d,	3,	  0,	0),
-	F( 385000000,      gpll3_out_main,   2,	  0,	0),
+	F( 310000000,	   gpll2_gfx3d,	     3,	  0,	0),
+	F( 385000000,      gpll2_gfx3d,      2,	  0,	0),
 	F( 435000000,      gpll3_out_main,   2,	  0,	0),
-	F( 465000000,      gpll2_gfx3d,   2,    0,    0),
-	F( 525000000,	   gpll2_gfx3d,   2,	  0,	0),
-	F( 550000000,      gpll3_out_main,   2,    0,    0),
+	F( 465000000,      gpll2_gfx3d,      2,   0,    0),
+	F( 525000000,	   gpll2_gfx3d,      2,   0,	0),
+	F( 550000000,      gpll3_out_main,   2,   0,    0),
 	F( 600000000,      gpll3_out_main,   2,   0,    0),
-	F( 650000000,      gpll2_gfx3d,   2,    0,    0),
-	F( 700000000, 	   gpll3_out_main,   2,    0,    0),
+	F( 650000000,      gpll2_gfx3d,      2,   0,    0),
+	F( 700000000, 	   gpll3_out_main,   2,   0,    0),
 	F_END
 };
 
